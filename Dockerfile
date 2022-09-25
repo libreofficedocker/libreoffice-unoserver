@@ -7,15 +7,15 @@ RUN set -xe \
     ; apk update \
     ; apk add --no-cache --purge -uU \
         bash curl \
-        icu-libs zlib-dev libstdc++ dbus-x11  \
-        icu-data-full \
+        icu-data-full icu-libs \
+        zlib-dev libstdc++ dbus-x11 \
     ; rm -rf /var/cache/apk/* /tmp/*
 
-ARG LIBREOFFICE_VERSION=7.2.7.2-r1
+ARG LIBREOFFICE_VERSION=
 RUN set -xe \
     ; apk update \
-    ; apk add --no-cache --purge -uU \
-        libreoffice==$LIBREOFFICE_VERSION \
+    ; test -z "${LIBREOFFICE_VERSION}" && apk add --no-cache --purge -uU libreoffice \
+    ; test -n "${LIBREOFFICE_VERSION}" && apk add --no-cache --purge -uU libreoffice==$LIBREOFFICE_VERSION \
     ; rm -rf /var/cache/apk/* /tmp/*
 
 ENV PYTHONUNBUFFERED=1
@@ -29,7 +29,7 @@ ENV PATH "/usr/lib/libreoffice/program:$PATH"
 ENV UNO_PATH "/usr/lib/libreoffice/program"
 ENV LD_LIBRARY_PATH "/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib"
 ENV PYTHONPATH "/usr/lib/libreoffice/program:$PYTHONPATH"
-RUN pip --no-cache install unoserver
+RUN pip install --no-cache unoserver
 
 ARG S6_OVERLAY_VERSION=3.1.1.2
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
@@ -44,6 +44,6 @@ ENTRYPOINT ["/init"]
 
 ADD rootfs /
 RUN fc-cache -fv \
-	&& chmod +x /docker-cmd.sh
+    && chmod +x /docker-cmd.sh
 ONBUILD RUN fc-cache -fv
 CMD [ "/docker-cmd.sh" ]
