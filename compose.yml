@@ -1,4 +1,4 @@
 services:
   libreoffice:
-    image: libreoffice-unoserver:nightly
+    image: socheatsok78/libreoffice-unoserver:nightly
     restart: always
