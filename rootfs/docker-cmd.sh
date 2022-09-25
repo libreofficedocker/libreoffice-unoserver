@@ -9,7 +9,7 @@ ME=$(basename $0)
 PID=$$
 
 function logv() {
-	echo "[$(date)]: $ME: $@ "
+	echo "$ME [$(date)]: $@ "
 }
 
 function trap_SIGINT() {
