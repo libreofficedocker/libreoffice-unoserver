@@ -1,0 +1,10 @@
+#!/command/with-contenv python3
+# This is an overrided unoconvert to allow it to work with s6-overlay
+
+# -*- coding: utf-8 -*-
+import re
+import sys
+from unoserver.converter import main
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
