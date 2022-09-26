@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-# Creating symbolic link for /fonts.d -> /usr/share/fonts/fonts.d
+# Creating symbolic link for /fonts.d -> /usr/share/fonts/font-extras
 # And add a trap for CTRL + C
 
 ME=$(basename $0)
@@ -26,13 +26,13 @@ logv "Main process running pid $PID"
 trap 'trap_SIGINT' SIGINT
 
 # Creating symbolic link for
-# /fonts.d -> /usr/share/fonts/fonts.d
+# /fonts.d -> /usr/share/fonts/font-extras
 if [ -d "/fonts.d" ]; then
-	if [ -h "/usr/share/fonts/fonts.d" ]; then
+	if [ -h "/usr/share/fonts/font-extras" ]; then
 		logv "The /fonts.d directory already been linked!"
 	else
-		logv "Creating symbolic link for /fonts.d -> /usr/share/fonts/fonts.d"
-		ln -s /fonts.d /usr/share/fonts/fonts.d
+		logv "Creating symbolic link for /fonts.d -> /usr/share/fonts/font-extras"
+		ln -s /fonts.d /usr/share/fonts/font-extras
 	fi
 
 	logv "Rebuild build font information cache files"
