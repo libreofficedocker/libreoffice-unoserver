@@ -4,8 +4,8 @@ The LibreOffice with unoserver on Docker
 
 ## Spec
 
-- Base image: [eclipse-temurin](https://hub.docker.com/_/eclipse-temurin)
-- Version: 17-jre-alpine
+- Base image: [adoptopenjdk/openjdk11](https://hub.docker.com/r/adoptopenjdk/openjdk11)
+- Version: `jre-11.0.6_10-alpine`
 
 ## Environment Variables
 
