@@ -1,4 +1,4 @@
-# docker-libreoffice-unoserver
+# libreoffice-unoserver
 
 The LibreOffice with unoserver on Docker
 
