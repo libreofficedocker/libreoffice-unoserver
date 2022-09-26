@@ -46,4 +46,5 @@ ADD rootfs /
 RUN fc-cache -fv \
     && chmod +x /docker-cmd.sh
 ONBUILD RUN fc-cache -fv
+VOLUME [ "/fonts.d" ]
 CMD [ "/docker-cmd.sh" ]
