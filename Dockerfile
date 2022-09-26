@@ -1,5 +1,5 @@
-# FROM adoptopenjdk/openjdk11:jre-11.0.6_10-alpine
-FROM eclipse-temurin:17-jre-alpine
+FROM adoptopenjdk/openjdk11:jre-11.0.6_10-alpine
+# FROM eclipse-temurin:17-jre-alpine
 
 ENV LANG en_US.UTF-8
 
@@ -7,8 +7,6 @@ RUN set -xe \
     ; apk update \
     ; apk add --no-cache --purge -uU \
         bash curl \
-        icu-data-full icu-libs \
-        zlib-dev libstdc++ dbus-x11 \
     ; rm -rf /var/cache/apk/* /tmp/*
 
 ARG LIBREOFFICE_VERSION=
