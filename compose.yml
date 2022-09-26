@@ -2,3 +2,5 @@ services:
   libreoffice:
     image: socheatsok78/libreoffice-unoserver:nightly
     restart: always
+    # environment:
+    #   - UNOSERVER_CMD=unoserver
