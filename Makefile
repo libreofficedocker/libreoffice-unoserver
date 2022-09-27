@@ -1,4 +1,4 @@
-DOCKER_REGISTRY=libreoffice-docker
+DOCKER_REGISTRY=libreofficedocker
 DOCKER_NAME=libreoffice-unoserver
 DOCKER_TAG=nightly
 DOCKER_IMAGE=${DOCKER_REGISTRY}/${DOCKER_NAME}:${DOCKER_TAG}
