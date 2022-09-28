@@ -20,7 +20,7 @@ libreofficedocker/libreoffice-unoserver:nightly
 
 This image do not shipped with REST API for unoserver by default.
 
-Please use https://github.com/socheatsok78/unoserver-rest-api.
+Please use https://github.com/libreoffice-docker/unoserver-rest-api.
 
 ### Environment Variables
 
