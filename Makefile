@@ -1,6 +1,6 @@
 DOCKER_REGISTRY=libreofficedocker
-DOCKER_NAME=libreoffice-unoserver-alpine
-DOCKER_TAG=nightly
+DOCKER_NAME=libreoffice-unoserver
+DOCKER_TAG=alpine
 DOCKER_IMAGE=${DOCKER_REGISTRY}/${DOCKER_NAME}:${DOCKER_TAG}
 
 build:
