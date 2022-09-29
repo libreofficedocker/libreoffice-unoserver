@@ -1,7 +1,8 @@
 FROM adoptopenjdk/openjdk11:jre-11.0.6_10-alpine
 # FROM eclipse-temurin:17-jre-alpine
 
-ENV LANG en_US.UTF-8
+# Default to UTF-8 file.encoding
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 RUN set -xe \
     ; apk update \
