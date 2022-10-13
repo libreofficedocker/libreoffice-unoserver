@@ -4,7 +4,7 @@ The LibreOffice with unoserver on Docker
 
 ## About
 
-This uses the [`adoptopenjdk/openjdk11:jre-11.0.6_10-alpine`](https://hub.docker.com/r/adoptopenjdk/openjdk11) as base images.
+This uses the [`alpine:3.16`](https://hub.docker.com/_/alpine) as base images.
 
 **NOTE**: Please fork or create a new project from this template to build your own image.
 
