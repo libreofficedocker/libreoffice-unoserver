@@ -1,3 +1,0 @@
-#!/bin/sh
-
-wait-for-it.sh --quiet --strict --timeout=3 "127.0.0.1:2002" -- exit 0 || exit 1

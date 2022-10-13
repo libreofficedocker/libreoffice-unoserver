@@ -6,4 +6,4 @@ else
     echo "INFO:unoserver:Start using custom server command"
 fi
 
-s6-notifyoncheck $UNOSERVER_CMD
+$UNOSERVER_CMD
