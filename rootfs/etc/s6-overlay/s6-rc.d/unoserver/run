@@ -1,8 +1,9 @@
 #!/command/with-contenv sh
 
 if [[ -z "${UNOSERVER_CMD}" ]]; then
-    unoserver
+    UNOSERVER_CMD=unoserver
 else
     echo "INFO:unoserver:Start using custom server command"
-    $UNOSERVER_CMD
 fi
+
+s6-notifyoncheck $UNOSERVER_CMD
