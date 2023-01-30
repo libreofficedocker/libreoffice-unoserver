@@ -60,7 +60,7 @@ RUN python3 --version \
     ; python3 -m ensurepip \
     ; pip3 install --no-cache --upgrade pip
 
-RUN pip install --no-cache unoserver
+RUN pip3 install --no-cache unoserver
 
 
 # s6-overlay
