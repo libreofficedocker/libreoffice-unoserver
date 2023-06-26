@@ -65,14 +65,16 @@ ENV S6_VERBOSITY=1 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENTRYPOINT [ "/init" ]
 
-# Uncomment the following line to
-# Enable REST API for unoserver
+# Uncomment the following line to enable REST API for unoserver
 # ARG UNOSERVER_REST_API_VERSION=0.5.0
-# ADD https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
-# ADD https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
-# RUN cd /tmp && sha256sum -c *.sha256 && \
-#     tar -C / -Jxpf /tmp/s6-overlay-module.tar.zx && \
+# RUN <<EOF
+#     cd /tmp
+#     curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
+#     curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
+#     sha256sum -c *.sha256
+#     tar -C / -Jxpf /tmp/s6-overlay-module.tar.zx
 #     rm -rf /tmp/*.tar*
+# EOF
 # EXPOSE 2004
 
 # RootFS
