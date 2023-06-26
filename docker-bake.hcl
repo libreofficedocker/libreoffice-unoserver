@@ -1,14 +1,12 @@
-variable "DOCKER_IMAGE_NAME" {
-    default = "libreofficedocker/libreoffice-unoserver"
-}
-
 variable "ALPINE_VERSION" {
     default = "3.16"
 }
-
 variable "S6_OVERLAY_VERSION" {
     default = "v3.1.5.0"
 }
+
+variable "DOCKER_META_IMAGES" {}
+variable "DOCKER_META_VERSION" {}
 
 target "default" {
     dockerfile = "Dockerfile"
@@ -17,5 +15,7 @@ target "default" {
         ALPINE_VERSION = "${ALPINE_VERSION}"
         S6_OVERLAY_VERSION = "${S6_OVERLAY_VERSION}"
     }
-    tags = ["${DOCKER_IMAGE_NAME}:${ALPINE_VERSION}"]
+    tags = [
+        "${DOCKER_META_IMAGES}:${DOCKER_META_VERSION}"
+    ]
 }
