@@ -22,7 +22,7 @@ libreofficedocker/libreoffice-unoserver:nightly
 
 ### REST API
 
-This image do not shipped with REST API for unoserver by default.
+This image does not shipped with REST API for unoserver by default.
 
 Please use https://github.com/libreoffice-docker/unoserver-rest-api.
 
