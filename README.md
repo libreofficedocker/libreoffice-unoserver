@@ -10,7 +10,11 @@ This uses the [`alpine:3.16`](https://hub.docker.com/_/alpine) as base images.
 
 ### Pre-built image
 
-We do not provide stable pre-built images, but we have an unstable `nightly` image for testing.
+> **Warning**
+> 
+> We do not provide stable pre-built images, but we have an unstable `nightly` image for testing.
+>
+> The `nightly` image may not up-to-date.
 
 ```
 libreofficedocker/libreoffice-unoserver:nightly
