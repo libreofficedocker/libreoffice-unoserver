@@ -1,4 +1,5 @@
-FROM alpine:3.16
+ARG ALPINE_VERSION=3.16
+FROM alpine:${ALPINE_VERSION}
 
 # Default to UTF-8 file.encoding
 ENV LANG='en_US.UTF-8' \
@@ -58,14 +59,14 @@ RUN <<EOF
     pip3 install --no-cache unoserver
 EOF
 
-ARG S6_OVERLAY_VERSION=3.1.5.0
+ARG S6_OVERLAY_VERSION=v3.1.5.0
 RUN <<EOF
     S6_ARCH=$(uname -m)
     cd /tmp
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz.sha256
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz.sha256
+    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz
+    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz.sha256
+    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz
+    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz.sha256
     sha256sum -c *.sha256
     tar -C / -Jxpf s6-overlay-noarch.tar.xz
     tar -C / -Jxpf s6-overlay-${S6_ARCH}.tar.xz
