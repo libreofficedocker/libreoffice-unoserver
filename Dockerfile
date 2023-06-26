@@ -5,30 +5,20 @@ FROM alpine:${ALPINE_VERSION}
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US:en' \
     LC_ALL='en_US.UTF-8'
+
+ENV JAVA_HOME=/opt/java/openjdk \
+    PATH="/opt/java/openjdk/bin:$PATH"
+
 RUN <<EOF
     apk add -U --no-cache \
         bash curl tzdata \
         freetype freetype-dev \
         icu icu-libs icu-data-full \
+        ttf-dejavu msttcorefonts-installer \
+        openjdk11-jre openjdk11-jre-headless \
         musl musl-dev musl-locales musl-locales-lang libc6-compat
-EOF
-
-# Install  OpenJDK JRE
-ENV JAVA_HOME=/opt/java/openjdk \
-    PATH="/opt/java/openjdk/bin:$PATH"
-
-RUN <<EOF
-    apk add -U --no-cache
-        openjdk11-jre \
-        openjdk11-jre-headless
-EOF
-
-# Install  Microsoft TrueType core fonts
-RUN <<EOF
-    apk add -U --no-cache
-        ttf-dejavu \
-        msttcorefonts-installer
     update-ms-fonts
+    fc-cache -fv
 EOF
 
 # Install LibreOffice
@@ -42,14 +32,6 @@ RUN <<EOF
         libreoffice-lang-en_us
 EOF
 
-ENV LD_LIBRARY_PATH /usr/lib \
-    URE_BOOTSTRAP "vnd.sun.star.pathname:/usr/lib/libreoffice/program/fundamentalrc" \
-    PATH "/usr/lib/libreoffice/program:$PATH" \
-    UNO_PATH "/usr/lib/libreoffice/program" \
-    LD_LIBRARY_PATH "/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib:$LD_LIBRARY_PATH" \
-    PYTHONPATH "/usr/lib/libreoffice/program:$PYTHONPATH"
-
-
 # Install PIP and unoserver
 RUN <<EOF
     export PYTHONUNBUFFERED=1
@@ -58,6 +40,13 @@ RUN <<EOF
     pip3 install --no-cache --upgrade pip
     pip3 install --no-cache unoserver
 EOF
+
+ENV LD_LIBRARY_PATH /usr/lib \
+    URE_BOOTSTRAP "vnd.sun.star.pathname:/usr/lib/libreoffice/program/fundamentalrc" \
+    PATH "/usr/lib/libreoffice/program:$PATH" \
+    UNO_PATH "/usr/lib/libreoffice/program" \
+    LD_LIBRARY_PATH "/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib:$LD_LIBRARY_PATH" \
+    PYTHONPATH "/usr/lib/libreoffice/program:$PYTHONPATH"
 
 ARG S6_OVERLAY_VERSION=v3.1.5.0
 RUN <<EOF
@@ -86,8 +75,6 @@ ENTRYPOINT [ "/init" ]
 
 # RootFS
 ADD rootfs /
-RUN <<EOF
-    chmod +x /docker-cmd.sh
-    fc-cache -fv
-EOF
+RUN chmod +x /docker-cmd.sh
+
 CMD [ "/docker-cmd.sh" ]
