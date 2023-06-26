@@ -16,3 +16,6 @@ indent_size = 2
 
 [*.sh]
 indent_style = tab
+
+[Makefile]
+indent_style = tab
