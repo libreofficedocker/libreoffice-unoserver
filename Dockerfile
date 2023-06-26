@@ -61,6 +61,8 @@ RUN <<EOF
     tar -C / -Jxpf s6-overlay-${S6_ARCH}.tar.xz
     rm -rf /tmp/*.tar*
 EOF
+ENV S6_VERBOSITY=1 \
+    S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENTRYPOINT [ "/init" ]
 
 # Uncomment the following line to
