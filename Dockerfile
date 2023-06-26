@@ -75,5 +75,4 @@ ENTRYPOINT [ "/init" ]
 
 # RootFS
 ADD rootfs /
-RUN chmod +x /docker-cmd.sh
-CMD [ "/docker-cmd.sh" ]
+CMD [ "sleep", "infinity" ]

@@ -15,5 +15,3 @@ logv "$NAME version: $VERSION_ID"
 logv "Python version: $PYTHON_VERSION"
 echo "$JRE_VERSION" | while read -r a; do logv "$a"; done
 logv "$LIBREOFFICE_VERSION"
-
-exec sleep infinity
