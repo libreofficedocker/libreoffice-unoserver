@@ -16,7 +16,7 @@ jobs:
           ALPINE_RELEASE_BRANCHES=$(curl -s https://www.alpinelinux.org/releases.json | jq -c -r ".release_branches[:${ALPINE_RELEASE_COUNT}]")
           echo "alpine_release_branches=${ALPINE_RELEASE_BRANCHES}" >> "$GITHUB_OUTPUT"
 
-          MATRIX_VERSION=$(echo "$ALPINE_RELEASE_BRANCHES" | jq -r '.[].rel_branch' | jq -c --raw-input --slurp 'split("\n") | map(select(. != ""))')
+          MATRIX_VERSION=$(echo "$ALPINE_RELEASE_BRANCHES" | jq -r '.[].rel_branch | sub("v";"")' | jq -c --raw-input --slurp 'sub("v";"") | split("\n") | map(select(. != ""))')
           echo "version=${MATRIX_VERSION}" >> "$GITHUB_OUTPUT"
     outputs:
       alpine_release_branches: ${{ steps.generate-jobs.outputs.alpine_release_branches }}
