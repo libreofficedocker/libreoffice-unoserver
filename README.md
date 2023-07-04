@@ -24,6 +24,11 @@ This image shipped with REST API for unoserver by default.
 
 See https://github.com/libreoffice-docker/unoserver-rest-api for more information.
 
+> **⚠️ Caution ⚠️**
+>
+> It is important to know that the  REST API layer DOES NOT provide any type of security whatsoever.  
+> It is NOT RECOMMENDED to expose this container image to the internet.
+
 ## License
 
 Licensed under [Apache-2.0 license](LICENSE)
