@@ -26,7 +26,8 @@ See https://github.com/libreoffice-docker/unoserver-rest-api for more informatio
 
 > **⚠️ Caution ⚠️**
 >
-> It is important to know that the  REST API layer DOES NOT provide any type of security whatsoever. It is RECOMMENDED not to expose this container image to the internet.
+> It is important to know that the  REST API layer DOES NOT provide any type of security whatsoever.  
+> It is NOT RECOMMENDED to expose this container image to the internet.
 
 ## License
 
