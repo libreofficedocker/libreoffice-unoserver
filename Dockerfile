@@ -1,4 +1,4 @@
-ARG ALPINE_VERSION=3.16
+ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 
 # Default to UTF-8 file.encoding
@@ -53,7 +53,7 @@ ENV LD_LIBRARY_PATH /usr/lib \
     LD_LIBRARY_PATH "/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib:$LD_LIBRARY_PATH" \
     PYTHONPATH "/usr/lib/libreoffice/program:$PYTHONPATH"
 
-ARG S6_OVERLAY_VERSION=v3.1.5.0
+ARG S6_OVERLAY_VERSION
 RUN <<EOF
     S6_ARCH=$(uname -m)
     cd /tmp
@@ -71,11 +71,11 @@ ENV S6_VERBOSITY=1 \
 ENTRYPOINT [ "/init" ]
 
 # Uncomment the following line to enable REST API for unoserver
-ARG UNOSERVER_REST_API_VERSION=0.5.0
+ARG UNOSERVER_REST_API_VERSION
 RUN <<EOF
     cd /tmp
-    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
-    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
+    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
+    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
     sha256sum -c *.sha256
     tar -C / -Jxpf /tmp/s6-overlay-module.tar.zx
     rm -rf /tmp/*.tar*
