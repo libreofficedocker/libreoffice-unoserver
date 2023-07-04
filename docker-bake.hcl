@@ -18,7 +18,4 @@ target "default" {
         ALPINE_VERSION = "${ALPINE_VERSION}"
         S6_OVERLAY_VERSION = "${S6_OVERLAY_VERSION}"
     }
-    tags = [
-        "${DOCKER_META_IMAGES}:${DOCKER_META_VERSION}"
-    ]
 }
