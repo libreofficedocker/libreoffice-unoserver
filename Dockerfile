@@ -74,10 +74,10 @@ ENTRYPOINT [ "/init" ]
 ARG UNOSERVER_REST_API_VERSION
 RUN <<EOF
     cd /tmp
-    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
-    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
+    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx
+    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256
     sha256sum -c *.sha256
-    tar -C / -Jxpf /tmp/s6-overlay-module.tar.zx
+    tar -C / -Jxpf /s6-overlay-module.tar.zx
     rm -rf /tmp/*.tar*
 EOF
 EXPOSE 2004
