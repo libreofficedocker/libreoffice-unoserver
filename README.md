@@ -4,6 +4,7 @@ The LibreOffice with unoserver on Docker
 
 ### Pre-built image
 
+[![CI](https://github.com/libreoffice-docker/libreoffice-unoserver/actions/workflows/ci.yml/badge.svg)](https://github.com/libreoffice-docker/libreoffice-unoserver/actions/workflows/ci.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/libreofficedocker/libreoffice-unoserver)](https://hub.docker.com/r/libreofficedocker/libreoffice-unoserver)
 
 This image uses the [`alpine`](https://hub.docker.com/_/alpine) as base images.
