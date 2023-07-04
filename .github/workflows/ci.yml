@@ -3,6 +3,9 @@ name: CI
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
+      - develop
 
   # Build daily on 00:00 UTC
   schedule:
