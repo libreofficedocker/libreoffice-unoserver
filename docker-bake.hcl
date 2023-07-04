@@ -8,10 +8,10 @@ variable "UNOSERVER_REST_API_VERSION" {
     default = "v0.6.2"
 }
 
-variable "DOCKER_META_IMAGES" {}
-variable "DOCKER_META_VERSION" {}
+target "docker-metadata-action" {}
 
 target "default" {
+    inherits = ["docker-metadata-action"]
     dockerfile = "Dockerfile"
     context = "."
     args = {
