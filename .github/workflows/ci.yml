@@ -13,7 +13,6 @@ on:
 
 env:
   ALPINE_RELEASE_COUNT: 5
-  DOCKER_META_IMAGES: libreofficedocker/libreoffice-unoserver
 
 jobs:
   generate-jobs:
@@ -52,11 +51,25 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: libreofficedocker/libreoffice-unoserver
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=raw,value=${{ matrix.version }}
+
       - name: Build and push
         uses: docker/bake-action@v3
         env:
           ALPINE_VERSION: ${{ matrix.version }}
-          DOCKER_META_VERSION: ${{ matrix.version }}
         with:
-          files: docker-bake.hcl
+          files: |
+            docker-bake.hcl
+            ${{ steps.meta.outputs.bake-file }}
           push: ${{ github.event_name != 'pull_request' }}
+
+      - name: Docker Metadata Summary
+        uses: dockerbakery/docker-metadata-summary@v1
