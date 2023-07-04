@@ -43,4 +43,4 @@ jobs:
           DOCKER_META_VERSION: ${{ matrix.version }}
         with:
           files: docker-bake.hcl
-          push: flase
+          push: false
