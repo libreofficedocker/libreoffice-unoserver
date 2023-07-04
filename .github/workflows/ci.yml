@@ -56,10 +56,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: libreofficedocker/libreoffice-unoserver
-          tags: |
-            type=schedule
-            type=ref,event=branch
-            type=raw,value=${{ matrix.version }}
+          tags: type=raw,value=${{ matrix.version }}
 
       - name: Build and push
         uses: docker/bake-action@v3
