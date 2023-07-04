@@ -1,38 +1,27 @@
-# libreoffice-unoserver
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/libreofficedocker/libreoffice-unoserver)](https://hub.docker.com/r/libreofficedocker/libreoffice-unoserver)
+## About
 
 The LibreOffice with unoserver on Docker
 
-## About
-
-This uses the [`alpine:3.16`](https://hub.docker.com/_/alpine) as base images.
-
-**NOTE**: Please fork or create a new project from this template to build your own image.
-
 ### Pre-built image
 
-> **Warning**
+[![Docker Pulls](https://img.shields.io/docker/pulls/libreofficedocker/libreoffice-unoserver)](https://hub.docker.com/r/libreofficedocker/libreoffice-unoserver)
+
+This image uses the [`alpine`](https://hub.docker.com/_/alpine) as base images.
+
+> **Note**
 >
-> We do not provide stable pre-built images, but we have an unstable `nightly` image for testing.
->
-> The `nightly` image may not up-to-date.
+> You can find the pre-built images on [Docker Hub](https://hub.docker.com/u/libreofficedocker).  
+> All release are built following Alpine release versions and only the last 5 versions are built.
 
 ```
-libreofficedocker/libreoffice-unoserver:nightly
+docker pull libreofficedocker/libreoffice-unoserver:${ALPINE_VERSION}
 ```
 
 ### REST API
 
-This image does not shipped with REST API for unoserver by default.
+This image shipped with REST API for unoserver by default.
 
-Please use https://github.com/libreoffice-docker/unoserver-rest-api.
-
-### Environment Variables
-
-| Variable      | Default   | Required | Description               |
-| ------------- | --------- | -------- | ------------------------- |
-| UNOSERVER_CMD | unoserver |          | Set the unoserver command |
+See https://github.com/libreoffice-docker/unoserver-rest-api for more information.
 
 ## License
 
