@@ -4,6 +4,7 @@ on:
   push:
 
 env:
+  ALPINE_RELEASE_COUNT: 5
   DOCKER_META_IMAGES: libreofficedocker/libreoffice-unoserver
 
 jobs:
@@ -12,7 +13,6 @@ jobs:
     steps:
       - id: generate-jobs
         run: |
-          ALPINE_RELEASE_COUNT=10
           ALPINE_RELEASE_BRANCHES=$(curl -s https://www.alpinelinux.org/releases.json | jq -c -r ".release_branches[:${ALPINE_RELEASE_COUNT}]")
           echo "alpine_release_branches=${ALPINE_RELEASE_BRANCHES}" >> "$GITHUB_OUTPUT"
 
