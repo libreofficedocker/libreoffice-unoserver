@@ -9,10 +9,15 @@ ENV LANG='en_US.UTF-8' \
 ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"
 
+ARG ALPINE_VERSION
 RUN <<EOF
+    ICU_DATA_PKG="icu-data-full"
+    if [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
+        ICU_DATA_PKG="icu-data"
+    fi
     apk add -U --no-cache \
         bash curl tzdata \
-        icu icu-libs icu-data-full \
+        icu icu-libs ${ICU_DATA_PKG} \
         freetype freetype-dev \
         ttf-dejavu msttcorefonts-installer \
         openjdk11-jre openjdk11-jre-headless \
@@ -66,17 +71,17 @@ ENV S6_VERBOSITY=1 \
 ENTRYPOINT [ "/init" ]
 
 # Uncomment the following line to enable REST API for unoserver
-# ARG UNOSERVER_REST_API_VERSION=0.5.0
-# RUN <<EOF
-#     cd /tmp
-#     curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
-#     curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
-#     sha256sum -c *.sha256
-#     tar -C / -Jxpf /tmp/s6-overlay-module.tar.zx
-#     rm -rf /tmp/*.tar*
-# EOF
-# EXPOSE 2004
+ARG UNOSERVER_REST_API_VERSION=0.5.0
+RUN <<EOF
+    cd /tmp
+    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx /tmp
+    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/v${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256 /tmp
+    sha256sum -c *.sha256
+    tar -C / -Jxpf /tmp/s6-overlay-module.tar.zx
+    rm -rf /tmp/*.tar*
+EOF
+EXPOSE 2004
 
 # RootFS
 ADD rootfs /
-CMD [ "sleep", "infinity" ]
+CMD [ "rootfs/docker-cmd.sh" ]
