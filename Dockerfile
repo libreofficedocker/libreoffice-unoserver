@@ -74,6 +74,7 @@ RUN <<EOF
     rm -rf /tmp/*.tar*
 EOF
 ENV S6_VERBOSITY=1 \
+    S6_KEEP_ENV=1 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENTRYPOINT [ "/init" ]
 
