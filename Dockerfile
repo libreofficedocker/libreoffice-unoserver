@@ -20,7 +20,7 @@ RUN <<EOF
         ALPING_EXTRA_PKGS=" icu-data-full"
     fi
     if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
-        ALPING_EXTRA_PKGS+=" musl musl-dev musl-locales musl-locales-lang libc6-compat"
+        ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS} musl musl-dev musl-locales musl-locales-lang libc6-compat"
     fi
     apk add -U --no-cache \
         bash curl tzdata \
