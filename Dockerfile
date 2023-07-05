@@ -22,7 +22,7 @@ RUN <<EOF
     apk add -U --no-cache \
         bash curl tzdata \
         icu icu-libs ${ICU_DATA_PKG} \
-        freetype freetype-dev \
+        fontconfig freetype freetype-dev \
         ttf-dejavu msttcorefonts-installer \
         openjdk11-jre openjdk11-jre-headless \
         musl musl-dev musl-locales musl-locales-lang libc6-compat
