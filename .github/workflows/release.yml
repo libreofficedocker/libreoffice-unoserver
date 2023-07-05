@@ -10,9 +10,6 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
-env:
-  ALPINE_RELEASE_COUNT: 5
-
 jobs:
   generate:
     runs-on: ubuntu-latest
