@@ -21,7 +21,7 @@ RUN <<EOF
         icu icu-libs ${ICU_PKGS} \
         fontconfig freetype freetype-dev \
         ttf-dejavu msttcorefonts-installer \
-        openjdk11-jre openjdk11-jre-headless \
+        openjdk11-jre openjdk11-jre-headless
     update-ms-fonts
     fc-cache -fv
 EOF
