@@ -19,6 +19,8 @@ jobs:
     steps:
       - id: alpine
         uses: actions-matrix/alpine-matrix-action@v1
+        with:
+          count: 5
     outputs:
       version: ${{ steps.alpine.outputs.version }}
 
