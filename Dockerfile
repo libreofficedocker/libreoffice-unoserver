@@ -13,15 +13,15 @@ ARG ALPINE_VERSION
 RUN <<EOF
     ALPING_EXTRA_PKGS=""
     if [ "$(echo "${ALPINE_VERSION} < 3.13" | bc)" -eq 1 ]; then
-        ALPING_EXTRA_PKGS+=" glib glib-dev gcompat"
+        ALPING_EXTRA_PKGS=" glib glib-dev gcompat"
     elif [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
-        ALPING_EXTRA_PKGS+=" icu-data"
-        ALPING_EXTRA_PKGS+=" musl musl-dev musl-locales musl-locales-lang libc6-compat"
+        ALPING_EXTRA_PKGS=" icu-data"
     else
-        ALPING_EXTRA_PKGS+=" icu-data-full"
+        ALPING_EXTRA_PKGS=" icu-data-full"
+    fi
+    if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
         ALPING_EXTRA_PKGS+=" musl musl-dev musl-locales musl-locales-lang libc6-compat"
     fi
-
     apk add -U --no-cache \
         bash curl tzdata \
         icu icu-libs \
@@ -29,7 +29,6 @@ RUN <<EOF
         ttf-dejavu msttcorefonts-installer \
         openjdk11-jre openjdk11-jre-headless \
         ${ALPING_EXTRA_PKGS}
-
     update-ms-fonts
     fc-cache -fv
 EOF
