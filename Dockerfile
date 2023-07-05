@@ -11,6 +11,7 @@ ENV JAVA_HOME=/opt/java/openjdk \
 
 ARG ALPINE_VERSION
 RUN <<EOF
+    set -euxo pipefail
     ALPING_EXTRA_PKGS=""
     if [ "$(echo "${ALPINE_VERSION} < 3.13" | bc)" -eq 1 ]; then
         ALPING_EXTRA_PKGS=" glib glib-dev gcompat"
@@ -35,6 +36,7 @@ EOF
 
 # Install LibreOffice
 RUN <<EOF
+    set -euxo pipefail
     apk add -U --no-cache \
         libreoffice-common \
         libreoffice-calc \
@@ -46,6 +48,7 @@ EOF
 
 # Install PIP and unoserver
 RUN <<EOF
+    set -euxo pipefail
     export PYTHONUNBUFFERED=1
     ln -s /usr/bin/python3 /usr/bin/python
     python3 -m ensurepip
@@ -62,6 +65,7 @@ ENV LD_LIBRARY_PATH /usr/lib \
 
 ARG S6_OVERLAY_VERSION
 RUN <<EOF
+    set -euxo pipefail
     S6_ARCH=$(uname -m)
     cd /tmp
     curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz
@@ -80,6 +84,7 @@ ENTRYPOINT [ "/init" ]
 # Uncomment the following line to enable REST API for unoserver
 ARG UNOSERVER_REST_API_VERSION
 RUN <<EOF
+    set -euxo pipefail
     cd /tmp
     curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx
     curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256
