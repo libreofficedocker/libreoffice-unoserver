@@ -17,5 +17,6 @@ target "default" {
     args = {
         ALPINE_VERSION = "${ALPINE_VERSION}"
         S6_OVERLAY_VERSION = "${S6_OVERLAY_VERSION}"
+        UNOSERVER_REST_API_VERSION = "${UNOSERVER_REST_API_VERSION}"
     }
 }
