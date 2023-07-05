@@ -84,4 +84,4 @@ EXPOSE 2004
 
 # RootFS
 ADD rootfs /
-CMD [ "rootfs/docker-cmd.sh" ]
+CMD [ "/docker-cmd.sh" ]
