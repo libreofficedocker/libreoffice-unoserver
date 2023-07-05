@@ -2,9 +2,7 @@ ARG ALPINE_VERSION
 FROM alpine:${ALPINE_VERSION}
 
 # Default to UTF-8 file.encoding
-ENV LANG='en_US.UTF-8' \
-    LANGUAGE='en_US:en' \
-    LC_ALL='en_US.UTF-8'
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"
