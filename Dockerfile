@@ -11,21 +11,23 @@ ENV JAVA_HOME=/opt/java/openjdk \
 
 ARG ALPINE_VERSION
 RUN <<EOF
-    ICU_DATA_PKG="icu-data-full"
-    if [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
-        ICU_DATA_PKG="icu-data"
-    fi
+    ALPING_EXTRA_PKGS=""
     if [ "$(echo "${ALPINE_VERSION} < 3.13" | bc)" -eq 1 ]; then
-        ICU_DATA_PKG=""
+        ALPING_EXTRA_PKGS+=" glib glib-dev gcompat"
+    elif [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
+        ALPING_EXTRA_PKGS+=" icu-data"
+    else
+        ALPING_EXTRA_PKGS+=" icu-data-full"
+        ALPING_EXTRA_PKGS+=" musl musl-dev musl-locales musl-locales-lang libc6-compat"
     fi
 
     apk add -U --no-cache \
         bash curl tzdata \
-        icu icu-libs ${ICU_DATA_PKG} \
+        icu icu-libs \
         fontconfig freetype freetype-dev \
         ttf-dejavu msttcorefonts-installer \
         openjdk11-jre openjdk11-jre-headless \
-        musl musl-dev musl-locales musl-locales-lang libc6-compat
+        ${ALPING_EXTRA_PKGS}
     update-ms-fonts
     fc-cache -fv
 EOF
