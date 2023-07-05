@@ -14,6 +14,8 @@ RUN <<EOF
     ICU_DATA_PKG="icu-data-full"
     if [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
         ICU_DATA_PKG="icu-data"
+    elif [ "$(echo "${ALPINE_VERSION} < 3.13" | bc)" -eq 1 ]; then
+        ICU_DATA_PKG=""
     fi
     apk add -U --no-cache \
         bash curl tzdata \
