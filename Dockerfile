@@ -10,27 +10,18 @@ ENV JAVA_HOME=/opt/java/openjdk \
 ARG ALPINE_VERSION
 RUN <<EOF
     set -euxo pipefail
-    ALPING_EXTRA_PKGS=""
-    if [ ${ALPINE_VERSION} = "edge" ]; then
-        # On edge the libc6-compat is not available
-        ALPING_EXTRA_PKGS="musl-libintl musl-locales musl-locales-lang gcompat"
+    ICU_PKGS=""
+    if [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
+        ICU_PKGS=" icu-data"
     else
-        if [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
-            ALPING_EXTRA_PKGS=" icu-data"
-        else
-            ALPING_EXTRA_PKGS=" icu-data-full"
-        fi
-        if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
-            ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS} musl-libintl musl-locales musl-locales-lang libc6-compat"
-        fi
+        ICU_PKGS=" icu-data-full"
     fi
     apk add -U --no-cache \
         bash curl tzdata \
-        icu icu-libs \
+        icu icu-libs ${ICU_PKGS} \
         fontconfig freetype freetype-dev \
         ttf-dejavu msttcorefonts-installer \
         openjdk11-jre openjdk11-jre-headless \
-        musl musl-dev ${ALPING_EXTRA_PKGS}
     update-ms-fonts
     fc-cache -fv
 EOF
