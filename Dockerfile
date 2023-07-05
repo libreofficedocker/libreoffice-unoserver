@@ -16,6 +16,7 @@ RUN <<EOF
         ALPING_EXTRA_PKGS+=" glib glib-dev gcompat"
     elif [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
         ALPING_EXTRA_PKGS+=" icu-data"
+        ALPING_EXTRA_PKGS+=" musl musl-dev musl-locales musl-locales-lang libc6-compat"
     else
         ALPING_EXTRA_PKGS+=" icu-data-full"
         ALPING_EXTRA_PKGS+=" musl musl-dev musl-locales musl-locales-lang libc6-compat"
