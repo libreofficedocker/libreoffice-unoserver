@@ -28,6 +28,7 @@ RUN <<EOF
         ttf-dejavu msttcorefonts-installer \
         openjdk11-jre openjdk11-jre-headless \
         ${ALPING_EXTRA_PKGS}
+
     update-ms-fonts
     fc-cache -fv
 EOF
