@@ -76,7 +76,7 @@ EOF
 ENV S6_VERBOSITY=1 \
     S6_KEEP_ENV=1 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
-ENTRYPOINT [ "/init" ]
+ENTRYPOINT ["/init"]
 
 # Uncomment the following line to enable REST API for unoserver
 ARG UNOSERVER_REST_API_VERSION

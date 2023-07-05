@@ -2,7 +2,7 @@ variable "ALPINE_VERSION" {
     default = "3.16"
 }
 variable "S6_OVERLAY_VERSION" {
-    default = "v3.1.5.0"
+    default = "v3.1.1.2"
 }
 variable "UNOSERVER_REST_API_VERSION" {
     default = "v0.7.0"
