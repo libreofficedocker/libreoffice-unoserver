@@ -51,7 +51,6 @@ RUN <<EOF
         ln -s /usr/bin/python3 /usr/bin/python
     fi
     python3 -m ensurepip
-    pip3 install --no-cache --upgrade pip
     pip3 install --no-cache unoserver
 EOF
 
