@@ -8,7 +8,7 @@ ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"
 
 ARG ALPINE_VERSION
-ARG ALPING_EXTRA_PKGS
+ARG ALPING_EXTRA_PKGS=
 RUN <<EOF
     set -euxo pipefail
     ICU_PKGS=""
