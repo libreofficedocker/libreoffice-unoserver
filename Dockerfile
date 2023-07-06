@@ -23,15 +23,32 @@ RUN <<EOF
     fi
     ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS}"
     if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
-        ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS} font-noto-all"
+        ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS} "
     fi
     apk add -U --no-cache \
         bash curl tzdata \
         icu icu-libs ${ICU_PKGS} \
-        fontconfig freetype freetype-dev \
-        ttf-dejavu msttcorefonts-installer \
         libstdc++ dbus-x11 \
         ${ALPING_EXTRA_PKGS}
+EOF
+
+# fonts - https://wiki.alpinelinux.org/wiki/Fonts
+RUN <<EOF
+    set -euxo pipefail
+    apk add -U --no-cache \
+        font-noto-all \
+        font-noto-cjk \
+        terminus-font \
+        ttf-font-awesome \
+        ttf-dejavu \
+        ttf-freefont \
+        ttf-hack \
+        ttf-inconsolata \
+        ttf-liberation \
+        ttf-mononoki  \
+        ttf-opensans   \
+        fontconfig \
+        msttcorefonts-installer
     update-ms-fonts
     fc-cache -fv
 EOF
