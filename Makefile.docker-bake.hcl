@@ -28,5 +28,6 @@ target "default" {
         S6_VERBOSITY = 0
         S6_KEEP_ENV = 1
         S6_BEHAVIOUR_IF_STAGE2_FAILS = 0
+        ALPING_EXTRA_PKGS = "htop"
     }
 }

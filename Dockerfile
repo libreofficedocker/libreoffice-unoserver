@@ -8,6 +8,7 @@ ENV JAVA_HOME=/opt/java/openjdk \
     PATH="/opt/java/openjdk/bin:$PATH"
 
 ARG ALPINE_VERSION
+ARG ALPING_EXTRA_PKGS
 RUN <<EOF
     set -euxo pipefail
     ICU_PKGS=""
@@ -20,9 +21,9 @@ RUN <<EOF
     else
         ICU_PKGS="icu-data-full"
     fi
-    ALPING_EXTRA_PKGS=""
+    ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS}"
     if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
-        ALPING_EXTRA_PKGS="font-noto-all"
+        ALPING_EXTRA_PKGS="${ALPING_EXTRA_PKGS} font-noto-all"
     fi
     apk add -U --no-cache \
         bash curl tzdata \
