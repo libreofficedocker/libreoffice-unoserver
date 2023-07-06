@@ -24,7 +24,8 @@ RUN <<EOF
         bash curl tzdata \
         icu icu-libs ${ICU_PKGS} \
         fontconfig freetype freetype-dev \
-        ttf-dejavu msttcorefonts-installer
+        font-noto-all ttf-dejavu msttcorefonts-installer \
+        libstdc++ dbus-x11
     update-ms-fonts
     fc-cache -fv
 EOF
@@ -39,7 +40,8 @@ RUN <<EOF
         libreoffice-impress \
         libreoffice-writer \
         libreoffice-lang-en_us \
-        libreofficekit
+        libreofficekit \
+        openjdk11-jre-headless
 EOF
 
 # Install PIP and unoserver
