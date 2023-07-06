@@ -11,12 +11,14 @@ ARG ALPINE_VERSION
 RUN <<EOF
     set -euxo pipefail
     ICU_PKGS=""
-    if [ "$(echo "${ALPINE_VERSION} < 3.13" | bc)" -eq 1 ]; then
+    if [ ${ALPINE_VERSION} = "edge" ]; then
+        ICU_PKGS="icu-data-full"
+    elif [ "$(echo "${ALPINE_VERSION} < 3.13" | bc)" -eq 1 ]; then
         ICU_PKGS=""
     elif [ "$(echo "${ALPINE_VERSION} < 3.16" | bc)" -eq 1 ]; then
-        ICU_PKGS=" icu-data"
+        ICU_PKGS="icu-data"
     else
-        ICU_PKGS=" icu-data-full"
+        ICU_PKGS="icu-data-full"
     fi
     apk add -U --no-cache \
         bash curl tzdata \
