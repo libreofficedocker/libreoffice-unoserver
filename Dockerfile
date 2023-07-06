@@ -63,8 +63,12 @@ ENV PYTHONPATH="/usr/lib/libreoffice/program:$PYTHONPATH"
 ARG S6_OVERLAY_VERSION=v3.1.5.0
 ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-minimal.sh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
-ENV S6_VERBOSITY=2 \
-    S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+ARG S6_VERBOSITY=2 \
+    S6_KEEP_ENV=0 \
+    S6_BEHAVIOUR_IF_STAGE2_FAILS=0
+ENV S6_VERBOSITY=${S6_VERBOSITY} \
+    S6_KEEP_ENV=${S6_KEEP_ENV} \
+    S6_BEHAVIOUR_IF_STAGE2_FAILS=${S6_BEHAVIOUR_IF_STAGE2_FAILS}
 ENTRYPOINT ["/init"]
 
 # Uncomment the following line to enable REST API for unoserver
