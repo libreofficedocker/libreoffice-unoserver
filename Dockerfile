@@ -73,7 +73,7 @@ ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-minimal.sh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
 ARG S6_VERBOSITY=2 \
     S6_KEEP_ENV=0 \
-    S6_BEHAVIOUR_IF_STAGE2_FAILS=0
+    S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV S6_VERBOSITY=${S6_VERBOSITY} \
     S6_KEEP_ENV=${S6_KEEP_ENV} \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=${S6_BEHAVIOUR_IF_STAGE2_FAILS}
