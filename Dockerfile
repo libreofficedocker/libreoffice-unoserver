@@ -20,12 +20,17 @@ RUN <<EOF
     else
         ICU_PKGS="icu-data-full"
     fi
+    ALPING_EXTRA_PKGS=""
+    if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
+        ALPING_EXTRA_PKGS="font-noto-all"
+    fi
     apk add -U --no-cache \
         bash curl tzdata \
         icu icu-libs ${ICU_PKGS} \
         fontconfig freetype freetype-dev \
-        font-noto-all ttf-dejavu msttcorefonts-installer \
-        libstdc++ dbus-x11
+        ttf-dejavu msttcorefonts-installer \
+        libstdc++ dbus-x11 \
+        ${ALPING_EXTRA_PKGS}
     update-ms-fonts
     fc-cache -fv
 EOF
