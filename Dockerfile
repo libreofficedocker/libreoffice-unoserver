@@ -52,12 +52,12 @@ RUN <<EOF
     pip3 install --no-cache unoserver
 EOF
 
-ENV LD_LIBRARY_PATH /usr/lib \
-    URE_BOOTSTRAP "vnd.sun.star.pathname:/usr/lib/libreoffice/program/fundamentalrc" \
-    PATH "/usr/lib/libreoffice/program:$PATH" \
-    UNO_PATH "/usr/lib/libreoffice/program" \
-    LD_LIBRARY_PATH "/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib:$LD_LIBRARY_PATH" \
-    PYTHONPATH "/usr/lib/libreoffice/program:$PYTHONPATH"
+ENV LD_LIBRARY_PATH=/usr/lib
+ENV URE_BOOTSTRAP="vnd.sun.star.pathname:/usr/lib/libreoffice/program/fundamentalrc"
+ENV PATH="/usr/lib/libreoffice/program:$PATH"
+ENV UNO_PATH="/usr/lib/libreoffice/program"
+ENV LD_LIBRARY_PATH="/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib:$LD_LIBRARY_PATH"
+ENV PYTHONPATH="/usr/lib/libreoffice/program:$PYTHONPATH"
 
 ARG S6_OVERLAY_VERSION
 RUN <<EOF
