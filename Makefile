@@ -14,4 +14,4 @@ run:
 	docker run -it --rm -p 2004:2004 ${DOCKER_META_IMAGES}:${DOCKER_META_VERSION}
 
 shell:
-	docker run -it --rm ${DOCKER_META_IMAGES}:${DOCKER_META_VERSION} sh
+	docker run -it --rm -p 2004:2004 ${DOCKER_META_IMAGES}:${DOCKER_META_VERSION} sh
