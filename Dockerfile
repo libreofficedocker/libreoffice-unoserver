@@ -33,21 +33,17 @@ RUN <<EOF
     set -euxo pipefail
     FONT_PKGS=""
     if [ "$(echo "${ALPINE_VERSION} >= 3.13" | bc)" -eq 1 ]; then
-        FONT_PKGS="font-noto-all"
+        FONT_PKGS="font-noto-all font-noto-cjk ttf-font-awesome ttf-hack"
     else
         FONT_PKGS="font-noto"
     fi
     apk add -U --no-cache \
         ${FONT_PKGS} \
-        font-noto-cjk \
         terminus-font \
-        ttf-font-awesome \
         ttf-dejavu \
         ttf-freefont \
-        ttf-hack \
         ttf-inconsolata \
         ttf-liberation \
-        ttf-mononoki  \
         ttf-opensans   \
         fontconfig \
         msttcorefonts-installer
