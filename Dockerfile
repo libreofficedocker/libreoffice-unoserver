@@ -24,8 +24,7 @@ RUN <<EOF
         bash curl tzdata \
         icu icu-libs ${ICU_PKGS} \
         fontconfig freetype freetype-dev \
-        ttf-dejavu msttcorefonts-installer \
-        openjdk11-jre openjdk11-jre-headless
+        ttf-dejavu msttcorefonts-installer
     update-ms-fonts
     fc-cache -fv
 EOF
