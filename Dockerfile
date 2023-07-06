@@ -39,7 +39,8 @@ RUN <<EOF
         libreoffice-draw \
         libreoffice-impress \
         libreoffice-writer \
-        libreoffice-lang-en_us
+        libreoffice-lang-en_us \
+        libreofficekit
 EOF
 
 # Install PIP and unoserver
