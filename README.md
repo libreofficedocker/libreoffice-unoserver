@@ -13,7 +13,7 @@ This image uses the [`alpine`](https://hub.docker.com/_/alpine) as base images.
 > **Note**
 >
 > You can find the pre-built images on [Docker Hub](https://hub.docker.com/u/libreofficedocker).
-> All release are built following Alpine release versions and only the last 5 versions are built.
+> All release are built following Alpine release versions and only the last 10 versions are built.
 
 ```
 docker pull libreofficedocker/libreoffice-unoserver:${ALPINE_VERSION}
