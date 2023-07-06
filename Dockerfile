@@ -59,22 +59,11 @@ ENV UNO_PATH="/usr/lib/libreoffice/program"
 ENV LD_LIBRARY_PATH="/usr/lib/libreoffice/program:/usr/lib/libreoffice/ure/lib:$LD_LIBRARY_PATH"
 ENV PYTHONPATH="/usr/lib/libreoffice/program:$PYTHONPATH"
 
-ARG S6_OVERLAY_VERSION
-RUN <<EOF
-    set -euxo pipefail
-    S6_ARCH=$(uname -m)
-    cd /tmp
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz.sha256
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz
-    curl -sLO https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz.sha256
-    sha256sum -c *.sha256
-    tar -C / -Jxpf s6-overlay-noarch.tar.xz
-    tar -C / -Jxpf s6-overlay-${S6_ARCH}.tar.xz
-    rm -rf /tmp/*.tar*
-EOF
-ENV S6_VERBOSITY=1 \
-    S6_KEEP_ENV=1 \
+# https://github.com/socheatsok78/s6-overlay-installer
+ARG S6_OVERLAY_VERSION=v3.1.5.0
+ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer-minimal.sh
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
+ENV S6_VERBOSITY=2 \
     S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENTRYPOINT ["/init"]
 
