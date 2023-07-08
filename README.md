@@ -23,7 +23,7 @@ docker pull libreofficedocker/libreoffice-unoserver:${ALPINE_VERSION}
 
 This image shipped with REST API for unoserver by default.
 
-See https://github.com/libreoffice-docker/unoserver-rest-api for more information.
+See https://github.com/libreofficedocker/unoserver-rest-api for more information.
 
 > **Warning**
 >
