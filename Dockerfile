@@ -100,8 +100,8 @@ ARG UNOSERVER_REST_API_VERSION
 RUN <<EOF
     set -euxo pipefail
     cd /tmp
-    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx
-    curl -sLO https://github.com/libreoffice-docker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256
+    curl -sLO https://github.com/libreofficedocker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx
+    curl -sLO https://github.com/libreofficedocker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}/s6-overlay-module.tar.zx.sha256
     sha256sum -c *.sha256
     tar -C / -Jxpf s6-overlay-module.tar.zx
     rm -rf /tmp/*.tar*
