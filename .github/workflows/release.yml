@@ -7,7 +7,7 @@ on:
 
   # Build daily on 00:00 UTC
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * SUN'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
