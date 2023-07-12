@@ -1,6 +1,6 @@
 ## About
 
-The LibreOffice with unoserver on Docker
+The packaged unoserver with REST APIs using Libreoffice in Docker
 
 ### Pre-built image
 
