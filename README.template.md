@@ -32,18 +32,7 @@ See https://github.com/libreofficedocker/unoserver-rest-api for more information
 
 ## Releases
 
-The following releases are available:
-
-- `edge`
-- `3.18`
-- `3.17`
-- `3.16`
-- `3.15`
-- `3.14`
-- `3.13`
-- `3.12`
-- `3.11`
-- `3.10`
+The following releases are available:<!--releases-->
 
 ## License
 

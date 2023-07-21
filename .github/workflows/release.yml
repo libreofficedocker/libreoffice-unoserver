@@ -66,3 +66,35 @@ jobs:
 
       - name: Docker Metadata Summary
         uses: dockerbakery/docker-metadata-summary@v1
+
+  generate-readme:
+    runs-on: ubuntu-latest
+    needs:
+      - generate
+      - build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate version-lock.json
+        run: |
+          cat <<EOF >version-lock.json
+          ${{ needs.generate.outputs.version }}
+          EOF
+
+      - name: Generate README.md
+        run: ./readme.sh
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: |
+            README.md
+            version-lock.json
+          commit_message: Generate README.md
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: libreofficedocker/libreoffice-unoserver
