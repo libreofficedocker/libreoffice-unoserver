@@ -30,6 +30,7 @@ ARG TARGETARCH
 ARG UNOSERVER_REST_API_VERSION
 ARG UNOSERVER_REST_API_RELEASE_URL=https://github.com/libreofficedocker/unoserver-rest-api/releases/download/${UNOSERVER_REST_API_VERSION}
 ADD ${UNOSERVER_REST_API_RELEASE_URL}/unoserver-rest-api-${TARGETOS}-${TARGETARCH} /usr/bin/unoserver-rest-api
+RUN chmod +x /usr/bin/unoserver-rest-api
 EXPOSE 2004
 
 # RootFS
