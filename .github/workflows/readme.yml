@@ -1,0 +1,56 @@
+name: README.md
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'readme.sh'
+      - 'version-lock.json'
+      - 'README.template.md'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version of nginx to generate the README for'
+        required: false
+        type: string
+  workflow_run:
+    workflows: ['Release']
+    branches: ['main']
+    types:
+      - completed
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    # continue-on-error: truegit
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generate version-lock.json
+        if: ${{ github.event.inputs.version }}
+        run: |
+          cat <<EOF >version-lock.json
+          ${{ inputs.version }}
+          EOF
+
+      - name: Generate README.md
+        run: ./readme.sh
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          file_pattern: |
+            README.md
+            version-lock.json
+          commit_message: Generate README.md
+
+      - name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: libreofficedocker/libreoffice-unoserver
