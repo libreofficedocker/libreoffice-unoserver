@@ -66,3 +66,14 @@ jobs:
 
       - name: Docker Metadata Summary
         uses: dockerbakery/docker-metadata-summary@v1
+
+  generate-readme:
+    needs:
+      - generate
+      - build
+    permissions:
+      contents: write
+    uses: ./.github/workflows/readme.yml
+    secrets: inherit
+    with:
+      version: ${{ needs.generate.outputs.version }}
