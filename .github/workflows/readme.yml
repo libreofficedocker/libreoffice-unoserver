@@ -8,16 +8,17 @@ on:
       - 'readme.sh'
       - 'version-lock.json'
       - 'README.template.md'
+  workflow_run:
+    workflows:
+      - Release
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       version:
         description: 'The version of nginx to generate the README for'
         required: false
         type: string
-  workflow_run:
-    workflows: ['Release']
-    types:
-      - completed
 
 permissions:
   contents: write
