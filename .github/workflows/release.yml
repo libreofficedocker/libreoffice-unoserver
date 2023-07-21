@@ -72,6 +72,8 @@ jobs:
     needs:
       - generate
       - build
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
