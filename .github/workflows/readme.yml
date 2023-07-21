@@ -16,7 +16,6 @@ on:
         type: string
   workflow_run:
     workflows: ['Release']
-    branches: ['main']
     types:
       - completed
 
