@@ -1,0 +1,3 @@
+#!/command/with-contenv sh
+
+unoserver-rest-api
