@@ -1,12 +1,11 @@
 #!/command/with-contenv sh
 
-UNOCONVERT_BIN="${UNOCONVERT_BIN:-/usr/bin/unoconvert}"
 LOCKRUN_LOCKFILE="/var/run/unoconvert.lock"
 
 # wait until the lock is released
 # then sleep 3 seconds between attempts to acquire the lock
 # try only 3 attempts of acquiring the lock
 lockrun --verbose --wait --sleep=3 --retries=3 --lockfile="$LOCKRUN_LOCKFILE" -- \
-    "${UNOCONVERT_BIN}" \
+    /usr/bin/unoconvert \
         --filter-options "EmbedStandardFonts=true" \
     "$@"
