@@ -8,7 +8,6 @@ RUN <<EOF
     if [ ! -f /usr/bin/python ]; then
         ln -s /usr/bin/python3 /usr/bin/python
     fi
-    python3 -m ensurepip
     pip3 install --no-cache unoserver
 EOF
 
