@@ -2,7 +2,5 @@
 
 LOCKRUN_LOCKFILE="/var/run/unoconvert.lock"
 
-# wait until the lock is released
-# then sleep 3 seconds between attempts to acquire the lock
-# try only 3 attempts of acquiring the lock
+set -x
 lockrun --verbose --wait --lockfile="$LOCKRUN_LOCKFILE" -- /usr/bin/unoconvert "$@"
