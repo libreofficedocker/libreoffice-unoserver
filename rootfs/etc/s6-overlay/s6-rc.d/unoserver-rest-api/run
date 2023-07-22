@@ -1,9 +1,14 @@
 #!/command/with-contenv sh
 
-UNOCONVERT_BIN="${UNOCONVERT_BIN:-/usr/bin/unoconvert}"
+UNOCONVERT_BIN="${UNOCONVERT_BIN:-/usr/bin/unoconvert-lockrun}"
 UNOCONVERT_TIMEOUT="${UNOCONVERT_TIMEOUT:-0s}"
 
+cat /banner.txt
+echo
+echo "Starting REST API server..."
+
 set -xe
+
 unoserver-rest-api \
     --unoconvert-bin "$UNOCONVERT_BIN" \
     --unoconvert-timeout "$UNOCONVERT_TIMEOUT"
