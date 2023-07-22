@@ -1,3 +1,8 @@
 #!/command/with-contenv sh
 
-unoserver-rest-api
+UNOCONVERT_BIN="/usr/bin/unoconvert-lockrun"
+UNOCONVERT_TIMEOUT="0s"
+
+unoserver-rest-api \
+    --unoconvert-bin "$UNOCONVERT_BIN" \
+    --unoconvert-timeout "$UNOCONVERT_TIMEOUT"
