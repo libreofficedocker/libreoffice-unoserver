@@ -2,6 +2,7 @@ ARG ALPINE_VERSION
 FROM libreofficedocker/alpine:${ALPINE_VERSION}
 
 # Install PIP and unoserver
+ARG ALPINE_VERSION
 RUN <<EOF
     set -euxo pipefail
     export PYTHONUNBUFFERED=1
