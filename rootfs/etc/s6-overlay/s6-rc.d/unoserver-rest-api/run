@@ -8,7 +8,6 @@ echo
 echo "Starting REST API server..."
 
 set -xe
-
 unoserver-rest-api \
     --unoconvert-bin "$UNOCONVERT_BIN" \
     --unoconvert-timeout "$UNOCONVERT_TIMEOUT"

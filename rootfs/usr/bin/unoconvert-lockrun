@@ -2,5 +2,5 @@
 
 LOCKRUN_LOCKFILE="/var/run/unoconvert.lock"
 
-set -x
+set -xe
 lockrun --verbose --wait --lockfile="$LOCKRUN_LOCKFILE" -- /usr/bin/unoconvert "$@"
