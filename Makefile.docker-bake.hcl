@@ -1,5 +1,5 @@
 variable "ALPINE_VERSION" {
-    default = "3.16"
+    default = "3.18"
 }
 variable "S6_OVERLAY_VERSION" {
     default = "v3.1.5.0"
