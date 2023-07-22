@@ -1,13 +1,26 @@
 #!/command/with-contenv sh
+. /etc/os-release
+
+ME=$(basename "$0")
+LIBREOFFICE_VERSION=$(libreoffice --version)
+PYTHON_VERSION=$(python --version)
+JRE_VERSION=$(java --version)
 
 UNOCONVERT_BIN="${UNOCONVERT_BIN:-/usr/bin/unoconvert-lockrun}"
-UNOCONVERT_TIMEOUT="${UNOCONVERT_TIMEOUT:-0s}"
+UNOCONVERT_TIMEOUT="${UNOCONVERT_TIMEOUT:-1m}"
 
 cat /banner.txt
 echo
-echo "Starting REST API server..."
 
+echo "- $NAME version: $VERSION_ID"
+echo "- $LIBREOFFICE_VERSION"
+echo "- Python version: $PYTHON_VERSION"
+echo "$JRE_VERSION" | while read -r a; do echo "- $a"; done
+echo
+
+echo "Starting REST API server..."
 set -xe
-unoserver-rest-api \
-    --unoconvert-bin "$UNOCONVERT_BIN" \
-    --unoconvert-timeout "$UNOCONVERT_TIMEOUT"
+wait-for-it --quiet -t 30 "localhost:2002" --strict -- \
+    unoserver-rest-api \
+        --unoconvert-bin "$UNOCONVERT_BIN" \
+        --unoconvert-timeout "$UNOCONVERT_TIMEOUT"
