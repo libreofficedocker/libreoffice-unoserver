@@ -8,7 +8,11 @@ RUN <<EOF
     if [ ! -f /usr/bin/python ]; then
         ln -s /usr/bin/python3 /usr/bin/python
     fi
-    pip3 install --no-cache unoserver
+    if [ ${ALPINE_VERSION} = "edge" ]; then
+        pip3 install --break-system-packages --no-cache unoserver
+    else
+        pip3 install --no-cache unoserver
+    fi
 EOF
 
 # https://github.com/socheatsok78/s6-overlay-installer
