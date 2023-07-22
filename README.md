@@ -27,7 +27,7 @@ See https://github.com/libreofficedocker/unoserver-rest-api for more information
 
 > **Warning**
 >
-> It is important to know that the  REST API layer DOES NOT provide any type of security whatsoever.
+> It is important to know that the REST API layer DOES NOT provide any type of security whatsoever.
 > It is NOT RECOMMENDED to expose this container image to the internet.
 
 ## Releases
@@ -44,6 +44,14 @@ The following releases are available:
 - `3.12`
 - `3.11`
 - `3.10`
+
+## Limitations
+
+> ⚠️⚠️ Please DO NOT expose the container to the internet ⚠️⚠️
+
+It is important to know that the REST API layer DOES NOT provide any type of security whatsoever.
+
+The service can process only one document at a time. There is no form of load balancing built into the `unoserver` nor **REST API**.
 
 ## License
 
