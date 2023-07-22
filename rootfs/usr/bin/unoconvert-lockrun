@@ -1,0 +1,7 @@
+#!/command/with-contenv bash
+
+LOCKFILE="/var/run/unoconvert.lock"
+lockrun --wait --verbose --lockfile="$LOCKFILE" -- \
+    /usr/bin/unoconvert \
+        --filter-options "EmbedStandardFonts=true" \
+    "$@"
