@@ -1,17 +1,5 @@
 ARG ALPINE_VERSION
-FROM libreofficedocker/alpine:${ALPINE_VERSION} as libreofficedocker-base
-
-# Poorman process queue using "lockrun.c"
-# https://github.com/libreofficedocker/lockrun.c
-FROM libreofficedocker-base AS lockrun
-RUN apk add gcc musl-dev \
-    && wget -O lockrun.c https://github.com/libreofficedocker/lockrun.c/raw/main/lockrun.c \
-    && gcc lockrun.c -o lockrun
-
-FROM libreofficedocker-base
-
-# lockrun
-COPY --from=lockrun /lockrun /usr/bin/lockrun
+FROM libreofficedocker/alpine:${ALPINE_VERSION}
 
 # Install PIP and unoserver
 RUN <<EOF
