@@ -4,6 +4,13 @@ ALPINE_VERSION := 3.16
 DOCKER_META_IMAGES := libreofficedocker/libreoffice-unoserver
 DOCKER_META_VERSION := test
 
+it:
+	@echo "Please use \`make <target>\` where <target> is one of"
+	@echo "  build        to build docker image"
+	@echo "  push         to push docker image"
+	@echo "  run          to run docker image"
+	@echo "  shell        to run docker image with shell"
+
 build:
 	DOCKER_META_IMAGES=${DOCKER_META_IMAGES} DOCKER_META_VERSION=${DOCKER_META_VERSION} docker buildx bake --load $(DOCKER_BAKE_FILE)
 
