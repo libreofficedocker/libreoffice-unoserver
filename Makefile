@@ -12,7 +12,9 @@ it:
 	@echo "  shell        to run docker image with shell"
 
 build:
-	DOCKER_META_IMAGES=${DOCKER_META_IMAGES} DOCKER_META_VERSION=${DOCKER_META_VERSION} docker buildx bake --load $(DOCKER_BAKE_FILE)
+	DOCKER_META_IMAGES=${DOCKER_META_IMAGES} DOCKER_META_VERSION=${DOCKER_META_VERSION} \
+	ALPINE_VERSION=${ALPINE_VERSION} \
+	docker buildx bake --load $(DOCKER_BAKE_FILE)
 
 push:
 	docker push ${DOCKER_META_IMAGES}:${DOCKER_META_VERSION}
