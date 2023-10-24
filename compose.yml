@@ -1,6 +1,6 @@
 services:
   libreoffice:
-    image: socheatsok78/libreoffice-unoserver:nightly
+    image: libreofficedocker/libreoffice-unoserver:3.18
     restart: always
     # environment:
     #   - UNOSERVER_CMD=unoserver
