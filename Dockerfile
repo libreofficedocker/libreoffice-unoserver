@@ -10,9 +10,9 @@ RUN <<EOF
         ln -s /usr/bin/python3 /usr/bin/python
     fi
     if [ ${ALPINE_VERSION} = "edge" ]; then
-        pip3 install --break-system-packages --no-cache unoserver
+        pip3 install --break-system-packages --no-cache unoserver==1.6
     else
-        pip3 install --no-cache unoserver
+        pip3 install --no-cache unoserver==1.6
     fi
 EOF
 
