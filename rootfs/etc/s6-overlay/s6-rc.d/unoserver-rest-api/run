@@ -20,7 +20,7 @@ echo
 
 echo "Starting REST API server..."
 set -xe
-wait-for-it --quiet -t 30 "localhost:2002" --strict -- \
+wait-for-it --quiet -t 30 "127.0.0.1:2002" --strict -- \
     unoserver-rest-api \
         --unoconvert-bin "$UNOCONVERT_BIN" \
         --unoconvert-timeout "$UNOCONVERT_TIMEOUT"
