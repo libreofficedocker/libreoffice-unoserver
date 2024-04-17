@@ -20,13 +20,6 @@ EOF
 ARG S6_OVERLAY_VERSION=v3.1.5.0
 ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer.sh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
-ARG S6_VERBOSITY=1 \
-    S6_KEEP_ENV=0 \
-    S6_BEHAVIOUR_IF_STAGE2_FAILS=2
-ENV S6_VERBOSITY=${S6_VERBOSITY} \
-    S6_KEEP_ENV=${S6_KEEP_ENV} \
-    S6_BEHAVIOUR_IF_STAGE2_FAILS=${S6_BEHAVIOUR_IF_STAGE2_FAILS}
-ENTRYPOINT ["/init"]
 
 # unoserver-rest-api
 ARG TARGETOS
@@ -39,4 +32,5 @@ EXPOSE 2004
 
 # RootFS
 ADD rootfs /
+ENTRYPOINT ["/init-shim"]
 CMD [ "/docker-cmd.sh" ]
