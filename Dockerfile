@@ -9,9 +9,10 @@ RUN <<EOF
     if [ ! -f /usr/bin/python ]; then
         ln -s /usr/bin/python3 /usr/bin/python
     fi
+    # compare stirng version if greater than or equal to 3.9
     if [ ${ALPINE_VERSION} = "edge" ]; then
         pip3 install --break-system-packages --no-cache unoserver==1.6
-    if [ ${ALPINE_VERSION} = "3.19" ]; then
+    elif [ "$(echo "${ALPINE_VERSION} >= 3.9" | bc)" -eq 1 ]; then
         pip3 install --break-system-packages --no-cache unoserver==1.6
     else
         pip3 install --no-cache unoserver==1.6
