@@ -4,8 +4,8 @@ A packaged unoserver with REST APIs using Libreoffice in Docker
 
 ### Pre-built image
 
-[![Release](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/release.yml/badge.svg)](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/release.yml)
-[![Test](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/test.yml/badge.svg)](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/test.yml)
+[![Release](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/release.yml/badge.svg?branch=v2)](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/release.yml)
+[![Build Test](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/test.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/libreofficedocker/libreoffice-unoserver)](https://hub.docker.com/r/libreofficedocker/libreoffice-unoserver)
 
 This image uses the [`alpine`](https://hub.docker.com/_/alpine) as base images.
