@@ -1,22 +1,11 @@
 ARG ALPINE_VERSION
 FROM libreofficedocker/alpine:${ALPINE_VERSION}
 
-# Install PIP and unoserver
-ARG ALPINE_VERSION
-RUN <<EOF
-    set -euxo pipefail
-    export PYTHONUNBUFFERED=1
-    if [ ! -f /usr/bin/python ]; then
-        ln -s /usr/bin/python3 /usr/bin/python
-    fi
-    if [ ${ALPINE_VERSION} = "edge" ]; then
-        pip3 install --break-system-packages --no-cache unoserver==1.6
-    elif [ "$(echo "${ALPINE_VERSION} >= 3.19" | bc)" -eq 1 ]; then
-        pip3 install --break-system-packages --no-cache unoserver==1.6
-    else
-        pip3 install --no-cache unoserver==1.6
-    fi
-EOF
+RUN --mount=type=bind,target=/tmp/buildfs,source=buildfs \
+<<EOT
+    cd /tmp/buildfs
+    ./install-unoserver.sh
+EOT
 
 # https://github.com/socheatsok78/s6-overlay-installer
 ARG S6_OVERLAY_VERSION=v3.1.5.0
