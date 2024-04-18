@@ -34,6 +34,15 @@ See https://github.com/libreofficedocker/unoserver-rest-api for more information
 
 The following releases are available:<!--releases-->
 
+> [!NOTE]
+> The container images are being build and pushed to the registry periodically through an automated process. It schedules a build every week to ensure that the images are up-to-date with the latest security patches and updates.
+>
+> Runs at 00:00, only on Sunday every week.
+
+If you want to stick with a specific version, you can pull the image with the tag corresponding to a specific commit hash. Please check the [![Release](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/release.yml/badge.svg?branch=v2)](https://github.com/libreofficedocker/libreoffice-unoserver/actions/workflows/release.yml) workflow for the build and tags you want to use.
+
+> Some of the workflow runs appear as failed, but the image is still built and pushed to the registry. The failed runs are due to some Pythong changes in the Alpine v3.19.
+
 ## Limitations
 
 > ⚠️⚠️ Please DO NOT expose the container to the internet ⚠️⚠️
