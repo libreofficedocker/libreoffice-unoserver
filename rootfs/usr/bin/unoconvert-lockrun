@@ -1,6 +1,6 @@
-#!/command/with-contenv sh
+#!/command/with-contenv bash
 
 LOCKRUN_LOCKFILE="/var/run/unoconvert.lock"
 
 set -xe
-lockrun --verbose --wait --lockfile="$LOCKRUN_LOCKFILE" -- /usr/bin/unoconvert "$@"
+lockrun --verbose --wait --lockfile="$LOCKRUN_LOCKFILE" -- unoconvert "$@"
