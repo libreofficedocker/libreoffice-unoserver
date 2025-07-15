@@ -1,16 +1,20 @@
 ARG ALPINE_VERSION
+ARG S6_VERSION=v3.2.1.0
+
+FROM socheatsok78/s6-overlay:${S6_VERSION} AS s6-overlay
+FROM socheatsok78/s6-overlay:${S6_VERSION}-symlinks AS s6-overlay-symlinks
+
 FROM libreofficedocker/alpine:${ALPINE_VERSION}
+
+# socheatsok78/s6-overlay
+COPY --link --from=s6-overlay / /
+COPY --link --from=s6-overlay-symlinks / /
 
 RUN --mount=type=bind,target=/tmp/buildfs,source=buildfs \
 <<EOT
     cd /tmp/buildfs
     ./install-unoserver.sh
 EOT
-
-# https://github.com/socheatsok78/s6-overlay-installer
-ARG S6_OVERLAY_VERSION=v3.1.5.0
-ARG S6_OVERLAY_INSTALLER=main/s6-overlay-installer.sh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/s6-overlay-installer/${S6_OVERLAY_INSTALLER})"
 
 # unoserver-rest-api
 ARG TARGETOS
